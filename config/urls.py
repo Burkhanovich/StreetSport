@@ -27,9 +27,6 @@ urlpatterns = [
     path('account/', include('apps.account.urls'), name='account'),
     path('stadium/', include('apps.stadium.urls'), name='stadium'),
 
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger'),

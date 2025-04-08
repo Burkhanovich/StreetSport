@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Account
 import re
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True)
@@ -36,3 +38,16 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ('id', 'role')
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['role'] = self.user.role
+        data['name'] = self.user.name
+        return data
+
+class UpdateRoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ('role',)
