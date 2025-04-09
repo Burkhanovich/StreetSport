@@ -15,6 +15,7 @@ class Account(AbstractUser):
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
+    username = None
 
 
 

@@ -40,7 +40,7 @@ class UpdateRoleView(APIView):
         if request.user.role == 2:
             if user.role == 1 or user.role==2:
                 return Response({"detail": "You do not have such permission."}, status=status.HTTP_400_BAD_REQUEST)
-            if role == 2:
+            if role == 2 or role == 1:
                     return Response({"detail": "You do not have such permission."}, status=status.HTTP_400_BAD_REQUEST)
             user.role = role
             user.save()
