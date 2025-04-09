@@ -3,7 +3,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer,UpdateRoleSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
-from .permissions import IsOwner, IsAdmin, IsManager
+from .permissions import IsAdminOrOwner, IsAdmin, IsManager
 from django.shortcuts import get_object_or_404
 from .models import Account
 from rest_framework.response import Response
@@ -18,7 +18,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class UpdateRoleView(APIView):
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated, IsAdminOrOwner]
     serializer_class = UpdateRoleSerializer
 
     def patch(self, request, pk):
