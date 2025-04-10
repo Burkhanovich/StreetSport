@@ -4,7 +4,8 @@ from .serializers import (
     RegisterSerializer,
     CustomTokenObtainPairSerializer,
     UpdateRoleSerializer,
-    ManagerRegisterSerializer
+    ManagerRegisterSerializer,
+    OwnerRegisterSerializer
 )
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
@@ -58,5 +59,9 @@ class CreateManager(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, IsAdminOrOwner]
     serializer_class = ManagerRegisterSerializer
 
+
+class CreateOwner(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
+    serializer_class = OwnerRegisterSerializer
 
 
