@@ -15,7 +15,7 @@ import os
 
 from django.conf.global_settings import STATIC_ROOT, MEDIA_URL, MEDIA_ROOT
 from dotenv import load_dotenv
-
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,9 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
-
-ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '172.26.4.166').split(',')
 
 AUTH_USER_MODEL = 'account.Account'
 
