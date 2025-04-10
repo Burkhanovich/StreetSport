@@ -67,3 +67,4 @@ class StadiumViewSerializer(serializers.ModelSerializer):
         model = Stadium
         fields = ["id", "location", "owner", "manager", "created_date", "images"]
         read_only_fields = ["id", "created_date"]
+

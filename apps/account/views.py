@@ -1,6 +1,11 @@
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer,UpdateRoleSerializer
+from .serializers import (
+    RegisterSerializer,
+    CustomTokenObtainPairSerializer,
+    UpdateRoleSerializer,
+    ManagerRegisterSerializer
+)
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from .permissions import IsAdminOrOwner, IsAdmin, IsManager
@@ -47,4 +52,11 @@ class UpdateRoleView(APIView):
             return Response({"detail": "The role has been changed."})
 
         return Response({"detail": "You do not have such permission."}, status=status.HTTP_403_FORBIDDEN)
+
+
+class CreateManager(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated, IsAdminOrOwner]
+    serializer_class = ManagerRegisterSerializer
+
+
 

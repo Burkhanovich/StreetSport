@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'drf_spectacular',
 
     'apps.account',
-    'apps.stadium'
+    'apps.stadium',
+    'apps.booking'
 ]
 
 MIDDLEWARE = [
